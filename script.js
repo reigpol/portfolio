@@ -199,35 +199,18 @@
         }, 100);
     }
 
-    // ——— Header Hide/Show on Scroll ———
-    let lastScrollY = window.scrollY;
+    // ——— Header background on scroll ———
     let ticking = false;
     const siteHeader = document.getElementById('siteHeader');
 
     function updateHeader() {
-        const currentScrollY = window.scrollY;
-        
         if (siteHeader) {
-            // Add scrolled class for background
-            if (currentScrollY > 50) {
+            if (window.scrollY > 50) {
                 siteHeader.classList.add('is-scrolled');
             } else {
                 siteHeader.classList.remove('is-scrolled');
             }
-            
-            // Hide/show on scroll direction
-            if (currentScrollY > 150) {
-                if (currentScrollY > lastScrollY) {
-                    siteHeader.style.transform = 'translateY(-100%)';
-                } else {
-                    siteHeader.style.transform = 'translateY(0)';
-                }
-            } else {
-                siteHeader.style.transform = 'translateY(0)';
-            }
         }
-        
-        lastScrollY = currentScrollY;
         ticking = false;
     }
 
