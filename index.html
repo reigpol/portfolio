@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Pol Reig Plazas — Odoo Tech Lead & Software Engineer</title>
+    <meta name="description" content="Portfolio of Pol Reig Plazas, Odoo Tech Lead and Software Engineer based in Barcelona.">
+    <meta name="theme-color" content="#F4F1EA">
+    <meta name="color-scheme" content="light">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;1,7..72,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+
+    <!-- Fixed Header for Mobile -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-inner">
+            <a href="#top" class="header-logo">Pol Reig Plazas</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+        </div>
+    </header>
+    <nav class="header-nav" id="headerNav" aria-hidden="true">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contributions" class="nav-link">Contributions</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+
+    <div class="page-wrapper">
+        <!-- Sidebar / Aside -->
+        <aside class="sidebar">
+            <div class="sidebar-sticky">
+                <div class="brand">
+                    <h1 class="brand-name">Pol Reig Plazas</h1>
+                    <p class="brand-title">Odoo Tech Lead<br>& Software Engineer</p>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <a href="#about" class="sidebar-link">
+                        <span class="link-num">01</span>
+                        <span class="link-text">About</span>
+                    </a>
+                    <a href="#experience" class="sidebar-link">
+                        <span class="link-num">02</span>
+                        <span class="link-text">Experience</span>
+                    </a>
+                    <a href="#skills" class="sidebar-link">
+                        <span class="link-num">03</span>
+                        <span class="link-text">Skills</span>
+                    </a>
+                    <a href="#contributions" class="sidebar-link">
+                        <span class="link-num">04</span>
+                        <span class="link-text">Contributions</span>
+                    </a>
+                    <a href="#contact" class="sidebar-link">
+                        <span class="link-num">05</span>
+                        <span class="link-text">Contact</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-contact">
+                    <a href="mailto:polreig18@gmail.com" class="contact-item">polreig18@gmail.com</a>
+                    <span class="contact-item">Barcelona, Spain</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="top">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <p class="hero-eyebrow reveal">Odoo Tech Lead & Software Engineer</p>
+                    <h2 class="hero-title reveal">
+                        <span class="hero-line">Building robust</span>
+                        <span class="hero-line accent-italic">ERP ecosystems</span>
+                        <span class="hero-line">from legacy to latest.</span>
+                    </h2>
+                    <div class="hero-meta reveal">
+                        <span class="meta-item">Barcelona, Spain</span>
+                        <span class="meta-separator">—</span>
+                        <span class="meta-item">4+ Years</span>
+                        <span class="meta-separator">—</span>
+                        <span class="meta-item">Odoo v8 to v19</span>
+                    </div>
+                    <div class="hero-actions reveal">
+                        <a href="mailto:polreig18@gmail.com" class="btn btn-primary magnetic-btn">Get in Touch</a>
+                        <a href="CVPolReigPlazas.pdf" download class="btn btn-secondary magnetic-btn">Download CV</a>
+                        <a href="https://www.linkedin.com/in/pol-reig-plazas-30020a20a" target="_blank" rel="noopener" class="btn btn-secondary magnetic-btn">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="hero-illustration" aria-hidden="true">
+                    <svg viewBox="0 0 400 400" class="illustration-svg">
+                        <defs>
+                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+                            </pattern>
+                        </defs>
+                        <rect width="400" height="400" fill="url(#grid)"/>
+                        <circle cx="200" cy="200" r="120" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+                        <circle cx="200" cy="200" r="80" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                        <line x1="200" y1="20" x2="200" y2="380" stroke="currentColor" stroke-width="1" opacity="0.1"/>
+                        <line x1="20" y1="200" x2="380" y2="200" stroke="currentColor" stroke-width="1" opacity="0.1"/>
+                        <rect x="160" y="160" width="80" height="80" fill="currentColor" opacity="0.05"/>
+                        <rect x="180" y="180" width="40" height="40" fill="currentColor" opacity="0.1"/>
+                    </svg>
+                </div>
+                <div class="hero-scroll-indicator" aria-hidden="true">
+                    <span class="scroll-text">Scroll</span>
+                    <span class="scroll-line"></span>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="section" id="about">
+                <div class="section-header">
+                    <span class="section-number" aria-hidden="true">01</span>
+                    <h3 class="section-title">About</h3>
+                </div>
+                <div class="section-line" aria-hidden="true"></div>
+                <div class="section-body">
+                    <p class="lead-text reveal">
+                        Tech Lead specializing in end-to-end Odoo ERP implementations for manufacturing, inventory, and finance. Certified in Odoo v16 and v19, I bridge the gap between business requirements and technical execution — leading teams, architecting custom modules, and steering complex migrations from legacy systems to modern stacks.
+                    </p>
+                    <div class="about-grid">
+                        <div class="about-card reveal">
+                            <h4 class="card-label">Focus</h4>
+                            <p>Manufacturing workflows, inventory logic, fiscal compliance, and system integrations via REST, XML-RPC, and EDI.</p>
+                        </div>
+                        <div class="about-card reveal">
+                            <h4 class="card-label">Approach</h4>
+                            <p>Pragmatic architecture, clean code standards, and an obsession for traceability and minimal operational downtime.</p>
+                        </div>
+                        <div class="about-card reveal">
+                            <h4 class="card-label">Community</h4>
+                            <p>Active contributor to the OCA Spanish localization project, improving electronic invoicing and fiscal reporting for the broader ecosystem.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="section" id="experience">
+                <div class="section-header">
+                    <span class="section-number" aria-hidden="true">02</span>
+                    <h3 class="section-title">Experience</h3>
+                </div>
+                <div class="section-line" aria-hidden="true"></div>
+                <div class="section-body">
+                    <article class="job-entry reveal">
+                        <div class="job-header">
+                            <div class="job-title-group">
+                                <h4 class="job-role">Software Engineer & Odoo Tech Lead</h4>
+                                <p class="job-company">QUBIQ</p>
+                            </div>
+                            <div class="job-meta">
+                                <time class="job-date">Jun 2021 – Present</time>
+                                <span class="job-location">Barcelona, Spain</span>
+                            </div>
+                        </div>
+                        <ul class="job-highlights">
+                            <li>Lead dozens of Odoo implementations (v8–v19) from requirements gathering and technical design to deployment and evolution, acting as the technical reference for clients and the internal team.</li>
+                            <li>Coordinate developers on deliverables, technical prioritization, and issue resolution, ensuring consistency and quality across the codebase.</li>
+                            <li>Plan and execute complex migrations from legacy versions (v8) to modern ones (v17/v18), transforming and validating critical data to guarantee integrity, traceability, and minimal operational downtime.</li>
+                            <li>Design and develop custom modules in <strong>Python</strong>, <strong>XML</strong>, and <strong>JavaScript</strong> for manufacturing, inventory, and finance — including advanced inventory and cost logic (vendor pricelists, BoM, automatic calculations).</li>
+                            <li>Architect integrations with external systems via REST APIs, XML-RPC, and <strong>FastAPI</strong> services, enabling EDI flows and automated synchronization with B2BRouter.</li>
+                            <li>Ensure Spanish fiscal compliance in Odoo (<strong>SII</strong>, <strong>AEAT</strong> models, <strong>Facturae</strong>), automating reporting and regulatory adaptations.</li>
+                            <li>Define development standards — PR reviews, style guides, and acceptance criteria — improving maintainability and scalability of deliverables.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="section" id="skills">
+                <div class="section-header">
+                    <span class="section-number" aria-hidden="true">03</span>
+                    <h3 class="section-title">Skills & Certifications</h3>
+                </div>
+                <div class="section-line" aria-hidden="true"></div>
+                <div class="section-body">
+                    <div class="skills-grid">
+                        <div class="skill-block reveal">
+                            <h4 class="skill-title">Odoo Ecosystem</h4>
+                            <div class="skill-tags">
+                                <span class="tag">Odoo v8–v19</span>
+                                <span class="tag">Module Development</span>
+                                <span class="tag">Migrations</span>
+                                <span class="tag">ORM</span>
+                                <span class="tag">QWeb</span>
+                                <span class="tag">Security / ACL</span>
+                                <span class="tag">Performance</span>
+                            </div>
+                        </div>
+                        <div class="skill-block reveal">
+                            <h4 class="skill-title">Technologies</h4>
+                            <div class="skill-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">XML</span>
+                                <span class="tag">SQL</span>
+                                <span class="tag">PostgreSQL</span>
+                            </div>
+                        </div>
+                        <div class="skill-block reveal">
+                            <h4 class="skill-title">Integrations</h4>
+                            <div class="skill-tags">
+                                <span class="tag">REST APIs</span>
+                                <span class="tag">XML-RPC</span>
+                                <span class="tag">FastAPI</span>
+                                <span class="tag">EDI</span>
+                                <span class="tag">B2BRouter</span>
+                            </div>
+                        </div>
+                        <div class="skill-block reveal">
+                            <h4 class="skill-title">Tools & Workflow</h4>
+                            <div class="skill-tags">
+                                <span class="tag">Git</span>
+                                <span class="tag">Docker</span>
+                                <span class="tag">Linux</span>
+                            </div>
+                        </div>
+                        <div class="skill-block reveal">
+                            <h4 class="skill-title">Languages</h4>
+                            <div class="skill-tags">
+                                <span class="tag">Spanish & Catalan (Native)</span>
+                                <span class="tag">English (Professional)</span>
+                            </div>
+                        </div>
+                        <div class="skill-block reveal certifications-block">
+                            <h4 class="skill-title">Certifications</h4>
+                            <div class="cert-list">
+                                <div class="cert-item">
+                                    <span class="cert-badge">Odoo v19</span>
+                                    <span class="cert-desc">Functional Certification</span>
+                                </div>
+                                <div class="cert-item">
+                                    <span class="cert-badge">Odoo v16</span>
+                                    <span class="cert-desc">Functional Certification</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contributions Section -->
+            <section class="section" id="contributions">
+                <div class="section-header">
+                    <span class="section-number" aria-hidden="true">04</span>
+                    <h3 class="section-title">Open Source Contributions</h3>
+                </div>
+                <div class="section-line" aria-hidden="true"></div>
+                <div class="section-body">
+                    <div class="contribution-card reveal">
+                        <div class="contrib-header">
+                            <h4 class="contrib-title">OCA / l10n-spain</h4>
+                            <span class="contrib-role">Active Contributor</span>
+                        </div>
+                        <p class="contrib-summary">Contributing to the Spanish localization and electronic invoicing ecosystem within the Odoo Community Association.</p>
+                        <ul class="contrib-highlights">
+                            <li>Improved <code>l10n_es_facturae</code> export functionality and regulatory compliance adjustments for Spanish electronic invoicing.</li>
+                            <li>Reported and resolved accounting and fiscal issues in Spanish localization modules, collaborating with the broader OCA community.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact / Footer Section -->
+            <section class="section section-contact" id="contact">
+                <div class="section-header">
+                    <span class="section-number" aria-hidden="true">05</span>
+                    <h3 class="section-title">Let's Connect</h3>
+                </div>
+                <div class="section-line" aria-hidden="true"></div>
+                <div class="section-body">
+                    <div class="contact-grid reveal">
+                        <a href="mailto:polreig18@gmail.com" class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                    <rect x="2" y="5" width="20" height="14" rx="2"/>
+                                    <path d="M2 7l8.5 5.5a3 3 0 003 0L22 7"/>
+                                </svg>
+                            </div>
+                            <div class="contact-info">
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">polreig18@gmail.com</span>
+                            </div>
+                            <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/pol-reig-plazas-30020a20a" target="_blank" rel="noopener" class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-info">
+                                <span class="contact-label">LinkedIn</span>
+                                <span class="contact-value">Pol Reig Plazas</span>
+                            </div>
+                            <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/polqubiq" target="_blank" rel="noopener" class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                                </svg>
+                            </div>
+                            <div class="contact-info">
+                                <span class="contact-label">GitHub</span>
+                                <span class="contact-value">polqubiq</span>
+                            </div>
+                            <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                            </svg>
+                        </a>
+                        <a href="CVPolReigPlazas.pdf" download class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="12" y1="18" x2="12" y2="12"/>
+                                    <polyline points="9 15 12 18 15 15"/>
+                                </svg>
+                            </div>
+                            <div class="contact-info">
+                                <span class="contact-label">CV</span>
+                                <span class="contact-value">Download PDF</span>
+                            </div>
+                            <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <footer class="site-footer">
+                        <p>Pol Reig Plazas — 2026</p>
+                    </footer>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>document.documentElement.classList.remove('no-js');</script>
+    <script src="script.js"></script>
+</body>
+</html>
