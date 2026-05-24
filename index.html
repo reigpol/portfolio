@@ -6,7 +6,7 @@
     <title>Pol Reig Plazas — Odoo Tech Lead & Software Engineer</title>
     <meta name="description" content="Portfolio of Pol Reig Plazas, Odoo Tech Lead and Software Engineer based in Barcelona.">
     <meta name="theme-color" content="#F4F1EA">
-    <meta name="color-scheme" content="light">
+    <meta name="color-scheme" content="light dark">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,11 +23,22 @@
     <header class="site-header" id="siteHeader">
         <div class="header-inner">
             <a href="#top" class="header-logo">Pol Reig Plazas</a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
-                <span class="menu-line"></span>
-                <span class="menu-line"></span>
-                <span class="menu-line"></span>
-            </button>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
+            </div>
         </div>
     </header>
     <nav class="header-nav" id="headerNav" aria-hidden="true">
@@ -71,10 +82,21 @@
                     </a>
                 </nav>
 
-                <div class="sidebar-contact">
-                    <a href="mailto:polreig18@gmail.com" class="contact-item">polreig18@gmail.com</a>
-                    <span class="contact-item">Barcelona, Spain</span>
-                </div>
+                <div class="sidebar-footer">
+                    <div class="sidebar-contact">
+                        <a href="mailto:polreig18@gmail.com" class="contact-item">polreig18@gmail.com</a>
+                        <span class="contact-item">Barcelona, Spain</span>
+                    </div>
+                    <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
             </div>
         </aside>
 
@@ -353,7 +375,23 @@
         </main>
     </div>
 
-    <script>document.documentElement.classList.remove('no-js');</script>
+    <script>
+        (function() {
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved || (prefersDark ? 'dark' : 'light');
+            const html = document.documentElement;
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (theme === 'dark') {
+                html.classList.add('dark');
+                if (meta) meta.setAttribute('content', '#12100e');
+            } else {
+                html.classList.add('light');
+                if (meta) meta.setAttribute('content', '#F4F1EA');
+            }
+            html.classList.remove('no-js');
+        })();
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

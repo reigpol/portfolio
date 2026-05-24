@@ -10,6 +10,30 @@
     // Detect touch device
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
+    // ——— Theme Toggle ———
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const html = document.documentElement;
+
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            html.classList.add('dark');
+            html.classList.remove('light');
+            if (themeMeta) themeMeta.setAttribute('content', '#12100e');
+        } else {
+            html.classList.remove('dark');
+            html.classList.add('light');
+            if (themeMeta) themeMeta.setAttribute('content', '#F4F1EA');
+        }
+    }
+
+    document.querySelectorAll('.theme-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    });
+
     // ——— Custom Cursor ———
     const cursor = document.getElementById('cursor');
     const cursorFollower = document.getElementById('cursorFollower');
@@ -18,23 +42,27 @@
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
         let followerX = 0, followerY = 0;
-        let isMouseActive = false;
-        let mouseTimeout;
         let rafId = null;
 
         function animateCursor() {
-            if (!isMouseActive) {
-                rafId = null;
-                return;
-            }
+            const prevFx = followerX;
+            const prevFy = followerY;
 
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            followerX += (mouseX - followerX) * 0.08;
-            followerY += (mouseY - followerY) * 0.08;
+            cursorX += (mouseX - cursorX) * 0.25;
+            cursorY += (mouseY - cursorY) * 0.25;
+            followerX += (mouseX - followerX) * 0.12;
+            followerY += (mouseY - followerY) * 0.12;
+
+            const velX = followerX - prevFx;
+            const velY = followerY - prevFy;
+            const speed = Math.min(Math.sqrt(velX * velX + velY * velY), 24);
+
+            const scaleX = 1 + speed * 0.018;
+            const scaleY = 1 - speed * 0.012;
+            const angle = Math.atan2(velY, velX) * (180 / Math.PI);
 
             cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
-            cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+            cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%) rotate(${angle}deg) scale(${scaleX}, ${scaleY})`;
 
             rafId = requestAnimationFrame(animateCursor);
         }
@@ -42,19 +70,19 @@
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-
-            if (!isMouseActive) {
-                isMouseActive = true;
-                if (!rafId) {
-                    rafId = requestAnimationFrame(animateCursor);
-                }
-            }
-
-            clearTimeout(mouseTimeout);
-            mouseTimeout = setTimeout(() => {
-                isMouseActive = false;
-            }, 100);
         });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+            cursorFollower.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '';
+            cursorFollower.style.opacity = '';
+        });
+
+        rafId = requestAnimationFrame(animateCursor);
 
         // Hover effects on interactive elements
         const interactiveElements = document.querySelectorAll('a, button, .btn, .tag, .about-card, .contribution-card, .contact-card');
