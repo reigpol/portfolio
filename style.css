@@ -1800,6 +1800,8 @@ body.dark .back-to-top:hover {
   margin: 0;
   flex-grow: 1;
   overflow-x: auto;
+  white-space: pre !important; /* Force code to slide horizontally instead of wrapping */
+  -webkit-overflow-scrolling: touch; /* Butter-smooth iOS momentum scroll */
 }
 
 .code-editor-block code {
@@ -1808,6 +1810,7 @@ body.dark .back-to-top:hover {
   font-size: 13px; /* Default */
   line-height: 1.5;
   transition: font-weight 0.2s ease, font-size 0.2s ease;
+  white-space: pre !important; /* Force code lines to maintain horizontal block structure */
 }
 
 /* Monaspace-inspired Code Typography Controls Panel */
