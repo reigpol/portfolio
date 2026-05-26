@@ -168,6 +168,21 @@ function initErpSandbox() {
     });
   });
 
+  function updateLineNumbers(codeHtml) {
+    const lineNumbersContainer = document.getElementById('codeLineNumbers');
+    if (!lineNumbersContainer) return;
+
+    // Split HTML lines to calculate numbers
+    const lines = codeHtml.split('\n');
+    const lineCount = lines.length;
+
+    let html = '';
+    for (let i = 1; i <= lineCount; i++) {
+      html += `<span>${i}</span>`;
+    }
+    lineNumbersContainer.innerHTML = html;
+  }
+
   function updateSandbox(key) {
     const data = ERP_MODULE_DATA[key];
     if (!data) return;
@@ -177,6 +192,7 @@ function initErpSandbox() {
     setTimeout(() => {
       screenTitle.textContent = data.title;
       codeSnippet.innerHTML = data.code;
+      updateLineNumbers(data.code);
       codeSnippet.style.opacity = 1;
     }, 150);
 
