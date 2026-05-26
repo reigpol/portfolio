@@ -1536,6 +1536,29 @@ body.dark .erp-btn.active::after {
     transform: translateX(-50%) !important;
   }
   
+  /* Optimize Code Editor space on Mobile to show more code */
+  .code-editor-block {
+    padding: 0.6rem !important; /* Reduce padding inside the terminal box */
+  }
+  
+  .code-line-numbers {
+    padding-right: 0.4rem !important;
+    margin-right: 0.4rem !important;
+  }
+  
+  .code-editor-block code {
+    font-size: 13px !important; /* Reset font size to original readable 13px */
+  }
+  
+  .screen-content {
+    padding: 0.75rem !important; /* Drastically reduce padding around the terminal screen container */
+    gap: 1.25rem !important; /* Narrow gap between code block and flow diagram */
+  }
+  
+  .interactive-section {
+    padding: 3rem 0.75rem !important; /* Reduce section lateral padding to expand the terminal block */
+  }
+  
   /* Section padding improvements */
   .hero-section {
     padding-top: 6.5rem;
@@ -1807,7 +1830,7 @@ body.dark .back-to-top:hover {
 .code-editor-block code {
   display: block;
   font-family: var(--font-mono);
-  font-size: 13px; /* Default */
+  font-size: var(--code-font-size, 13px); /* Use CSS variable to allow mobile clean override */
   line-height: 1.5;
   transition: font-weight 0.2s ease, font-size 0.2s ease;
   white-space: pre !important; /* Force code lines to maintain horizontal block structure */
