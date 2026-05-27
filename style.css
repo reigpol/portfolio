@@ -250,6 +250,14 @@ p {
   letter-spacing: -0.5px;
 }
 
+.mobile-logo {
+  display: inline;
+}
+
+.desktop-logo {
+  display: none;
+}
+
 .desktop-nav {
   display: none; /* Mobile first */
   align-items: center;
@@ -1592,6 +1600,12 @@ body.dark .erp-btn.active::after {
   /* Header navigation */
   .desktop-nav {
     display: flex;
+  }
+  .mobile-logo {
+    display: none;
+  }
+  .desktop-logo {
+    display: inline;
   }
   .mobile-menu-toggle {
     display: none;
