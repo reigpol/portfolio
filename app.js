@@ -2,6 +2,60 @@
 // PORTFOLIO INTERACTIVE LOGIC
 // ==========================================================================
 
+// Shared syntax highlighting
+function highlight(text) {
+  const escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g, '<br>');
+  return escaped
+    .replace(/(@\w+(?:\.\w+)?)/g, '<span class="decorator">$1</span>')
+    .replace(/'[^']*'/g, '<span class="string">$&</span>')
+    .replace(/\bclass\s+(\w+)(?:\(([^)]+)\))?/g, function(m, name, parent) {
+      return '<span class="keyword">class</span> <span class="class-name">' + name + '</span>' + (parent ? '(<span class="class-name">' + parent + '</span>)' : '');
+    })
+    .replace(/\bdef\s+(\w+)/g, '<span class="keyword">def</span> <span class="function-name">$1</span>')
+    .replace(/\b(if|elif|else|for|while|in|is|not|and|or|try|except|finally|return|raise|with|as|self|True|False|None)\b/g, '<span class="keyword">$1</span>')
+    .replace(/\b\d+(?:\.\d+)?\b/g, '<span class="number">$&</span>');
+}
+// Shared typing effect — types raw code char by char with syntax highlighting
+function startTyping(el, cursorEl, raw) {
+  if (!el || !cursorEl) return;
+  if (el._typingTimer) { clearTimeout(el._typingTimer); el._typingTimer = null; }
+  el.textContent = '';
+  cursorEl.textContent = '';
+  let idx = 0;
+  function typeChar() {
+    if (idx < raw.length) {
+      el.innerHTML = highlight(raw.substring(0, idx + 1));
+      idx++;
+      el._typingTimer = setTimeout(typeChar, naturalDelay(raw, idx));
+    } else {
+      el.innerHTML = highlight(raw);
+      cursorEl.textContent = ' \u2588';
+      el._typingTimer = null;
+    }
+  }
+  el._typingTimer = setTimeout(typeChar, naturalDelay(raw, 0));
+}
+
+function naturalDelay(raw, idx) {
+  const c = raw[idx];
+  const n = raw[idx + 1] || '';
+  if (c === '\n') {
+    if (/^\s*(def\b|class\b|for\b|if\b|return\b|@\w)/.test(raw.substring(idx + 1)))
+      return 30 + Math.random() * 20;
+    return 12 + Math.random() * 10;
+  }
+  if (c === ' ') {
+    if (idx > 0 && (raw[idx - 1] === ' ' || raw[idx - 1] === '\n')) return 0;
+    return 6 + Math.random() * 6;
+  }
+  if (/[:;.,(){}@=><#'"\-\+]/.test(c)) return 8 + Math.random() * 8;
+  if (/[a-zA-Z0-9_]/.test(c)) {
+    const atEnd = !n || !/[a-zA-Z0-9_]/.test(n);
+    return (atEnd ? 4 : 2) + Math.random() * 4;
+  }
+  return 4 + Math.random() * 5;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initThemeSystem();
   initMobileMenu();
@@ -9,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initSkillsFilter();
   initErpSandbox();
-  initScrollAnimations();
   initContactInteractions();
+  initTypingEffect();
 });
 
 // Theme System Initialization (Dark / Light Mode)
@@ -18,21 +72,10 @@ function initThemeSystem() {
   const toggleBtn = document.getElementById('themeToggleBtn');
   if (!toggleBtn) return;
 
-  const storedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  // Apply default or stored choice
-  if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
-    document.body.classList.add('dark');
-  } else {
-    document.body.classList.remove('dark');
-  }
-
-  // Handle active clicks
   toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
-    localStorage.setItem('theme', currentTheme);
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 }
 
@@ -81,71 +124,64 @@ function initMobileMenu() {
 const ERP_MODULE_DATA = {
   manufacturing: {
     title: 'custom_mrp_costing.py',
-    code: `<span class="keyword">class</span> <span class="class-name">MrpProduction</span>(models.Model):
-    _inherit = <span class="string">'mrp.production'</span>
+    code:
+`class MrpProduction(models.Model):
+    _inherit = 'mrp.production'
 
-    <span class="decorator">@api.depends</span>(<span class="string">'client_promises'</span>, <span class="string">'manager_deadline'</span>)
-    <span class="keyword">def</span> <span class="function-name">_compute_delivery_physics</span>(<span class="keyword">self</span>):
-        <span class="keyword">for</span> order <span class="keyword">in</span> <span class="keyword">self</span>:
-            order.margin_ratio = <span class="number">42.0</span>
-            order.ignore_gravity = order.is_urgent
-            order.developer_burnout_index = <span class="number">999</span>`,
-    parentIcon: '⚙️',
-    parentLabel: 'mrp.production',
-    childIcon: '🧮',
-    childLabel: 'BOM Valuation Flow',
+    @api.depends('date_start', 'product_qty')
+    def _compute_realistic_deadline(self):
+        for production in self:
+            production.date_deadline = production.date_start
+            production.delay_owner = 'supplier'
+            if production.product_qty > 1000:
+                production.delay_reason = 'next_sprint'`,
     footerLeft: 'ERP Versions: v16 - v19',
     footerRight: 'mrp_custom_valuation'
   },
   inventory: {
     title: 'stock_smart_routes.py',
-    code: `<span class="keyword">class</span> <span class="class-name">StockMove</span>(models.Model):
-    _inherit = <span class="string">'stock.move'</span>
+    code:
+`class StockMove(models.Model):
+    _inherit = 'stock.move'
 
-    <span class="keyword">def</span> <span class="function-name">_resolve_warehouse_quantum_state</span>(<span class="keyword">self</span>):
-        <span class="keyword">for</span> move <span class="keyword">in</span> <span class="keyword">self</span>:
-            move.force_teleportation = move.is_lost_in_transit
-            move.blame_logistics_partner = <span class="keyword">not</span> move.has_tracking
-            move.auto_reply_template = <span class="string">'delays_due_to_solar_flares'</span>`,
-    parentIcon: '📦',
-    parentLabel: 'stock.picking',
-    childIcon: '🚛',
-    childLabel: 'Supplier Pricelist Matrix',
+    @api.depends('product_uom_qty', 'quantity')
+    def _compute_quantity_gap(self):
+        for move in self:
+            move.quantity_gap = move.product_uom_qty - move.quantity
+            move.audit_status = 'matches_excel'
+            if move.quantity_gap:
+                move.audit_status = 'ask_warehouse'`,
     footerLeft: 'Odoo Logistics: Advanced Routing',
     footerRight: 'stock_quantum_router'
   },
   billing: {
     title: 'l10n_es_facturae_audit.py',
-    code: `<span class="keyword">class</span> <span class="class-name">AccountMove</span>(models.Model):
-    _inherit = <span class="string">'account.move'</span>
+    code:
+`class AccountMove(models.Model):
+    _inherit = 'account.move'
 
-    <span class="keyword">def</span> <span class="function-name">_handle_tax_inspection</span>(<span class="keyword">self</span>):
-        <span class="keyword">for</span> inv <span class="keyword">in</span> <span class="keyword">self</span>:
-            inv.ticketbai_bypass_key = <span class="string">'super_secret_cheat_code'</span>
-            inv.aeat_distraction_basket = inv.amount_total &gt; <span class="number">500000</span>
-            inv.sii_status = <span class="string">'schrodinger_sent'</span>`,
-    parentIcon: '🧾',
-    parentLabel: 'account.move (Facturae)',
-    childIcon: '🏛️',
-    childLabel: 'AEAT / SII Government Gate',
+    def _process_aeat_response(self, response):
+        self.ensure_one()
+        self.aeat_status = 'accepted'
+        if response.status_code == 418:
+            self.aeat_status = 'it_is_complicated'
+            self.message_post(body=_('AEAT returned a teapot.'))`,
     footerLeft: 'ES Localization compliance',
     footerRight: 'l10n_es_facturae'
   },
   integrations: {
     title: 'fastapi_edi_bridge.py',
-    code: `<span class="keyword">class</span> <span class="class-name">FastApiConnector</span>(models.AbstractModel):
-    _name = <span class="string">'fastapi.connector'</span>
+    code:
+`class FastApiConnector(models.AbstractModel):
+    _name = 'fastapi.connector'
 
-    <span class="decorator">@api.model</span>
-    <span class="keyword">def</span> <span class="function-name">disaster_recovery</span>(<span class="keyword">self</span>):
-        <span class="keyword">for</span> worker <span class="keyword">in</span> <span class="keyword">self</span>.workers:
-            worker.kill_zombie_threads = <span class="keyword">True</span>
-            worker.ignore_user_complaints = <span class="keyword">True</span>
-            worker.breathing_room = <span class="keyword">True</span>`,
-    parentIcon: '⚡',
-    parentLabel: 'FastAPI Microservice',
-    childIcon: '🔗',
-    childLabel: 'Odoo XML-RPC Core',
+    @api.model
+    def _sync_legacy_order(self, payload):
+        try:
+            return self._call_vendor(payload)
+        except TimeoutError:
+            _logger.info('Vendor API works on their machine')
+            return {'status': 'retry'}`,
     footerLeft: 'External EDI Integrations',
     footerRight: 'fastapi_xmlrpc_bridge'
   }
@@ -154,33 +190,29 @@ const ERP_MODULE_DATA = {
 function initErpSandbox() {
   const controls = document.querySelectorAll('.erp-btn');
   const codeSnippet = document.getElementById('codeSnippet');
+  const sandboxCursor = document.getElementById('sandboxCursor');
   const screenTitle = document.getElementById('screenTitle');
-  const screenDots = document.querySelectorAll('.erp-screen .card-dot');
 
   if (!controls.length || !codeSnippet) return;
 
-  // Visual easter egg when clicking screen dots, similar to hero visual dots
-  if (screenDots.length > 0) {
-    screenDots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        codeSnippet.style.transition = 'color 0.1s ease';
-        codeSnippet.style.color = '#FBBF24';
-        setTimeout(() => {
-          codeSnippet.style.color = '';
-        }, 400);
-      });
-    });
-  }
-
   // Initialize with manufacturing
-  updateSandbox('manufacturing');
+  setTimeout(function() {
+    const data = ERP_MODULE_DATA['manufacturing'];
+    if (data) {
+      screenTitle.textContent = data.title;
+      const footerLeft = document.getElementById('sandboxFooterLeft');
+      const footerRight = document.getElementById('sandboxFooterRight');
+      if (footerLeft && data.footerLeft) footerLeft.textContent = data.footerLeft;
+      if (footerRight && data.footerRight) footerRight.textContent = data.footerRight;
+      startTyping(codeSnippet, sandboxCursor, data.code);
+    }
+  }, 400);
 
   controls.forEach(btn => {
     btn.addEventListener('click', (e) => {
       controls.forEach(b => b.classList.remove('active'));
       const currentBtn = e.currentTarget;
       currentBtn.classList.add('active');
-      
       const moduleKey = currentBtn.getAttribute('data-module');
       updateSandbox(moduleKey);
     });
@@ -189,83 +221,13 @@ function initErpSandbox() {
   function updateSandbox(key) {
     const data = ERP_MODULE_DATA[key];
     if (!data) return;
-
-    // Smooth transition for code: fade out and slide slightly down
-    codeSnippet.style.opacity = 0;
-    codeSnippet.style.transform = 'translateY(8px)';
-    
-    setTimeout(() => {
-      screenTitle.textContent = data.title;
-      codeSnippet.innerHTML = data.code;
-      
-      // Update footer metadata tags to match the tab
-      const footerLeft = document.getElementById('sandboxFooterLeft');
-      const footerRight = document.getElementById('sandboxFooterRight');
-      if (footerLeft && data.footerLeft) footerLeft.textContent = data.footerLeft;
-      if (footerRight && data.footerRight) footerRight.textContent = data.footerRight;
-      
-      // Fade in and slide back up
-      codeSnippet.style.opacity = 1;
-      codeSnippet.style.transform = 'translateY(0)';
-    }, 150);
+    screenTitle.textContent = data.title;
+    const footerLeft = document.getElementById('sandboxFooterLeft');
+    const footerRight = document.getElementById('sandboxFooterRight');
+    if (footerLeft && data.footerLeft) footerLeft.textContent = data.footerLeft;
+    if (footerRight && data.footerRight) footerRight.textContent = data.footerRight;
+    startTyping(codeSnippet, sandboxCursor, data.code);
   }
-}
-
-// 3. Staggered reveal animations on scroll
-function initScrollAnimations() {
-  const animatedElements = [
-    ...document.querySelectorAll('.metric-card'),
-    ...document.querySelectorAll('.timeline-item'),
-    ...document.querySelectorAll('.contribution-card'),
-    ...document.querySelectorAll('.skill-category-card'),
-    ...document.querySelectorAll('.edu-card'),
-    ...document.querySelectorAll('.cert-item'),
-    ...document.querySelectorAll('.contact-inner'),
-    document.querySelector('.interactive-section .section-header'),
-    ...document.querySelectorAll('.erp-btn'),
-    document.querySelector('.erp-screen')
-  ].filter(Boolean);
-
-  // Set initial hidden styles dynamically (prevents layout flash if JS loads late)
-  animatedElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(25px)';
-    el.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-  });
-
-  const observer = new IntersectionObserver((entries) => {
-    const activeEntries = entries.filter(e => e.isIntersecting);
-    activeEntries.forEach((entry) => {
-      const element = entry.target;
-      const index = animatedElements.indexOf(element);
-      
-      let delay = 0;
-      if (index !== -1) {
-        if (element.classList.contains('erp-screen')) {
-          // Fire right after the last erp-btn (4 buttons * 85ms = ~340ms)
-          delay = 340;
-        } else if (element.classList.contains('erp-btn')) {
-          // Stagger the 4 buttons sequentially
-          const btnIndex = Array.from(document.querySelectorAll('.erp-btn')).indexOf(element);
-          delay = btnIndex * 85;
-        } else {
-          delay = (index % 4) * 85;
-        }
-      }
-      
-      setTimeout(() => {
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0)';
-      }, delay);
-      
-      observer.unobserve(element);
-    });
-  }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-  });
-
-  animatedElements.forEach(el => observer.observe(el));
 }
 
 // 4. Quick Feedback Copy to Clipboard for Contact Items
@@ -274,15 +236,9 @@ function initContactInteractions() {
   
   contactLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-      // Prevent immediate default navigation if user wants to double-click/copy
       const textToCopy = link.querySelector('.contact-text').textContent;
       
-      // Attempt copy
       navigator.clipboard.writeText(textToCopy).then(() => {
-        const originalText = link.querySelector('.contact-text').textContent;
-        const iconWrap = link.querySelector('.contact-icon-wrapper');
-        
-        // Show success mini tooltip
         const feedback = document.createElement('span');
         feedback.textContent = ' (Copied!)';
         feedback.style.fontSize = '0.75rem';
@@ -303,9 +259,7 @@ function initContactInteractions() {
             feedback.remove();
           }, 300);
         }, 2000);
-      }).catch(err => {
-        // Fallback silently to normal link behavior
-      });
+      }).catch(() => {});
     });
   });
 }
@@ -368,4 +322,23 @@ function initSkillsFilter() {
       }
     });
   });
+}
+
+// 8. Hero typing effect — code types itself out in color
+function initTypingEffect() {
+  const el = document.getElementById('typingCode');
+  const cursor = document.getElementById('typingCursor');
+  if (!el || !cursor) return;
+
+  const raw =
+  'class OdooTechLead(Developer):\n' +
+  '    @api.depends(\'experience_years\')\n' +
+  '    def _compute_expertise(self):\n' +
+  '        for eng in self:\n' +
+  '            eng.expert_upgrades = True\n' +
+  '            eng.compliance_es = True\n' +
+  '            eng.oca_contributor = True\n' +
+  '            eng.clean_code = True';
+
+  setTimeout(function() { startTyping(el, cursor, raw); }, 100);
 }

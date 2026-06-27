@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.className=localStorage.getItem('theme')==='dark'||(localStorage.getItem('theme')===null&&window.matchMedia('(prefers-color-scheme:dark)').matches)?'dark':''</script>
 </head>
 <body>
   
@@ -110,14 +111,7 @@
               <span class="card-title">odoo_architecture.py</span>
             </div>
             <div class="card-body">
-              <pre><code class="language-python"><span class="keyword">class</span> <span class="class-name">OdooTechLead</span>(<span class="class-name">Developer</span>):
-    <span class="decorator">@api.depends</span>(<span class="string">'experience_years'</span>)
-    <span class="keyword">def</span> <span class="function-name">_compute_expertise</span>(<span class="keyword">self</span>):
-        <span class="keyword">for</span> eng <span class="keyword">in</span> <span class="keyword">self</span>:
-            eng.expert_upgrades = <span class="keyword">True</span>
-            eng.compliance_es = <span class="keyword">True</span>
-            eng.oca_contributor = <span class="keyword">True</span>
-            eng.clean_code = <span class="keyword">True</span></code></pre>
+              <pre><code id="typingCode"></code><span id="typingCursor"></span></pre>
             </div>
             <div class="card-footer">
               <span class="footer-stat">ERP Versions: v8 – v19</span>
@@ -211,7 +205,7 @@
               <span class="card-title" id="screenTitle">odoo_mrp_logic.py</span>
             </div>
             <div class="card-body">
-              <pre><code id="codeSnippet"># Loading module custom costing algorithm...</code></pre>
+              <pre><code id="codeSnippet"></code><span id="sandboxCursor"></span></pre>
             </div>
             <div class="card-footer" id="sandboxFooter">
               <span class="footer-stat" id="sandboxFooterLeft">Odoo ERP System: Core Engine</span>
