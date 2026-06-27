@@ -81,67 +81,73 @@ function initMobileMenu() {
 const ERP_MODULE_DATA = {
   manufacturing: {
     title: 'custom_mrp_costing.py',
-    code: `<span class="code-keyword">class</span> <span class="code-method">MrpProduction</span>(models.Model):
-    _inherit = <span class="code-string">'mrp.production'</span>
+    code: `<span class="keyword">class</span> <span class="class-name">MrpProduction</span>(models.Model):
+    _inherit = <span class="string">'mrp.production'</span>
 
-    <span class="code-keyword">def</span> <span class="code-method">action_confirm</span>(<span class="code-keyword">self</span>):
-        <span class="code-comment"># Compute automated BOM costing margins on confirmation</span>
-        res = <span class="code-keyword">super</span>(MrpProduction, <span class="code-keyword">self</span>).action_confirm()
-        <span class="code-keyword">for</span> order <span class="code-keyword">in</span> <span class="code-keyword">self</span>:
-            order._calculate_custom_cost_ratios()
-        <span class="code-keyword">return</span> res`,
+    <span class="decorator">@api.depends</span>(<span class="string">'client_promises'</span>, <span class="string">'manager_deadline'</span>)
+    <span class="keyword">def</span> <span class="function-name">_compute_delivery_physics</span>(<span class="keyword">self</span>):
+        <span class="keyword">for</span> order <span class="keyword">in</span> <span class="keyword">self</span>:
+            order.margin_ratio = <span class="number">42.0</span>
+            order.ignore_gravity = order.is_urgent
+            order.developer_burnout_index = <span class="number">999</span>`,
     parentIcon: '⚙️',
     parentLabel: 'mrp.production',
     childIcon: '🧮',
-    childLabel: 'BOM Valuation Flow'
+    childLabel: 'BOM Valuation Flow',
+    footerLeft: 'ERP Versions: v16 - v19',
+    footerRight: 'mrp_custom_valuation'
   },
   inventory: {
     title: 'stock_smart_routes.py',
-    code: `<span class="code-keyword">class</span> <span class="code-method">StockMove</span>(models.Model):
-    _inherit = <span class="code-string">'stock.move'</span>
+    code: `<span class="keyword">class</span> <span class="class-name">StockMove</span>(models.Model):
+    _inherit = <span class="string">'stock.move'</span>
 
-    <span class="code-keyword">def</span> <span class="code-method">_action_assign</span>(<span class="code-keyword">self</span>):
-        <span class="code-comment"># Enforce advanced supplier routes based on realtime lead times</span>
-        <span class="code-keyword">self</span>._validate_warehouse_capacity()
-        <span class="code-keyword">return</span> <span class="code-keyword">super</span>()._action_assign()`,
+    <span class="keyword">def</span> <span class="function-name">_resolve_warehouse_quantum_state</span>(<span class="keyword">self</span>):
+        <span class="keyword">for</span> move <span class="keyword">in</span> <span class="keyword">self</span>:
+            move.force_teleportation = move.is_lost_in_transit
+            move.blame_logistics_partner = <span class="keyword">not</span> move.has_tracking
+            move.auto_reply_template = <span class="string">'delays_due_to_solar_flares'</span>`,
     parentIcon: '📦',
     parentLabel: 'stock.picking',
     childIcon: '🚛',
-    childLabel: 'Supplier Pricelist Matrix'
+    childLabel: 'Supplier Pricelist Matrix',
+    footerLeft: 'Odoo Logistics: Advanced Routing',
+    footerRight: 'stock_quantum_router'
   },
   billing: {
     title: 'l10n_es_facturae_audit.py',
-    code: `<span class="code-keyword">class</span> <span class="code-method">AccountMove</span>(models.Model):
-    _inherit = <span class="code-string">'account.move'</span>
+    code: `<span class="keyword">class</span> <span class="class-name">AccountMove</span>(models.Model):
+    _inherit = <span class="string">'account.move'</span>
 
-    <span class="code-keyword">def</span> <span class="code-method">_post</span>(<span class="code-keyword">self</span>, soft=<span class="code-keyword">True</span>):
-        <span class="code-comment"># Electronic Invoice XML sign with Spanish AEAT / SII</span>
-        posted = <span class="code-keyword">super</span>()._post(soft)
-        <span class="code-keyword">if</span> <span class="code-keyword">self</span>.country_code == <span class="code-string">'ES'</span>:
-            <span class="code-keyword">self</span>._submit_sii_electronic_invoicing()
-        <span class="code-keyword">return</span> posted`,
+    <span class="keyword">def</span> <span class="function-name">_handle_tax_inspection</span>(<span class="keyword">self</span>):
+        <span class="keyword">for</span> inv <span class="keyword">in</span> <span class="keyword">self</span>:
+            inv.ticketbai_bypass_key = <span class="string">'super_secret_cheat_code'</span>
+            inv.aeat_distraction_basket = inv.amount_total &gt; <span class="number">500000</span>
+            inv.sii_status = <span class="string">'schrodinger_sent'</span>`,
     parentIcon: '🧾',
     parentLabel: 'account.move (Facturae)',
     childIcon: '🏛️',
-    childLabel: 'AEAT / SII Government Gate'
+    childLabel: 'AEAT / SII Government Gate',
+    footerLeft: 'ES Localization compliance',
+    footerRight: 'l10n_es_facturae'
   },
   integrations: {
     title: 'fastapi_edi_bridge.py',
-    code: `<span class="code-keyword">from</span> fastapi <span class="code-keyword">import</span> FastAPI, Depends
-<span class="code-keyword">import</span> xmlrpc.client
+    code: `<span class="keyword">class</span> <span class="class-name">FastApiConnector</span>(models.AbstractModel):
+    _name = <span class="string">'fastapi.connector'</span>
 
-app = FastAPI(title=<span class="code-string">"B2BRouter EDI Sync"</span>)
-
-<span class="code-keyword">@app.post</span>(<span class="code-string">"/edi/sync"</span>)
-<span class="code-keyword">def</span> <span class="code-method">synchronize_invoice</span>(payload: InvoiceSchema):
-    <span class="code-comment"># Secure XML-RPC pipe to synchronize external operations</span>
-    uid = common.authenticate(HOST, DB, USER, PWD, {})
-    models.execute_kw(DB, uid, PWD, <span class="code-string">'account.move'</span>, <span class="code-string">'create'</span>, [payload])
-    <span class="code-keyword">return</span> {"sync_status": "success"}`,
+    <span class="decorator">@api.model</span>
+    <span class="keyword">def</span> <span class="function-name">disaster_recovery</span>(<span class="keyword">self</span>):
+        <span class="keyword">for</span> worker <span class="keyword">in</span> <span class="keyword">self</span>.workers:
+            worker.kill_zombie_threads = <span class="keyword">True</span>
+            worker.ignore_user_complaints = <span class="keyword">True</span>
+            worker.breathing_room = <span class="keyword">True</span>`,
     parentIcon: '⚡',
     parentLabel: 'FastAPI Microservice',
     childIcon: '🔗',
-    childLabel: 'Odoo XML-RPC Core'
+    childLabel: 'Odoo XML-RPC Core',
+    footerLeft: 'External EDI Integrations',
+    footerRight: 'fastapi_xmlrpc_bridge'
   }
 };
 
@@ -149,10 +155,22 @@ function initErpSandbox() {
   const controls = document.querySelectorAll('.erp-btn');
   const codeSnippet = document.getElementById('codeSnippet');
   const screenTitle = document.getElementById('screenTitle');
-  const parentNode = document.getElementById('diagNodeParent');
-  const childNode = document.getElementById('diagNodeChild');
+  const screenDots = document.querySelectorAll('.erp-screen .card-dot');
 
   if (!controls.length || !codeSnippet) return;
+
+  // Visual easter egg when clicking screen dots, similar to hero visual dots
+  if (screenDots.length > 0) {
+    screenDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        codeSnippet.style.transition = 'color 0.1s ease';
+        codeSnippet.style.color = '#FBBF24';
+        setTimeout(() => {
+          codeSnippet.style.color = '';
+        }, 400);
+      });
+    });
+  }
 
   // Initialize with manufacturing
   updateSandbox('manufacturing');
@@ -168,54 +186,28 @@ function initErpSandbox() {
     });
   });
 
-  function updateLineNumbers(codeHtml) {
-    const lineNumbersContainer = document.getElementById('codeLineNumbers');
-    if (!lineNumbersContainer) return;
-
-    // Split HTML lines to calculate numbers
-    const lines = codeHtml.split('\n');
-    const lineCount = lines.length;
-
-    let html = '';
-    for (let i = 1; i <= lineCount; i++) {
-      html += `<span>${i}</span>`;
-    }
-    lineNumbersContainer.innerHTML = html;
-  }
-
   function updateSandbox(key) {
     const data = ERP_MODULE_DATA[key];
     if (!data) return;
 
-    // Smooth transition for code
+    // Smooth transition for code: fade out and slide slightly down
     codeSnippet.style.opacity = 0;
+    codeSnippet.style.transform = 'translateY(8px)';
+    
     setTimeout(() => {
       screenTitle.textContent = data.title;
       codeSnippet.innerHTML = data.code;
-      updateLineNumbers(data.code);
+      
+      // Update footer metadata tags to match the tab
+      const footerLeft = document.getElementById('sandboxFooterLeft');
+      const footerRight = document.getElementById('sandboxFooterRight');
+      if (footerLeft && data.footerLeft) footerLeft.textContent = data.footerLeft;
+      if (footerRight && data.footerRight) footerRight.textContent = data.footerRight;
+      
+      // Fade in and slide back up
       codeSnippet.style.opacity = 1;
+      codeSnippet.style.transform = 'translateY(0)';
     }, 150);
-
-    // Update diagram nodes with custom flash animations
-    if (parentNode && childNode) {
-      parentNode.classList.remove('active-pulse');
-      childNode.classList.remove('active-pulse');
-
-      parentNode.innerHTML = `
-        <span class="node-icon">${data.parentIcon}</span>
-        <span class="node-label">${data.parentLabel}</span>
-      `;
-      childNode.innerHTML = `
-        <span class="node-icon">${data.childIcon}</span>
-        <span class="node-label">${data.childLabel}</span>
-      `;
-
-      // Trigger micro-flash
-      setTimeout(() => {
-        parentNode.classList.add('active-pulse');
-        childNode.classList.add('active-pulse');
-      }, 50);
-    }
   }
 }
 
@@ -228,8 +220,11 @@ function initScrollAnimations() {
     ...document.querySelectorAll('.skill-category-card'),
     ...document.querySelectorAll('.edu-card'),
     ...document.querySelectorAll('.cert-item'),
-    ...document.querySelectorAll('.contact-inner')
-  ];
+    ...document.querySelectorAll('.contact-inner'),
+    document.querySelector('.interactive-section .section-header'),
+    ...document.querySelectorAll('.erp-btn'),
+    document.querySelector('.erp-screen')
+  ].filter(Boolean);
 
   // Set initial hidden styles dynamically (prevents layout flash if JS loads late)
   animatedElements.forEach(el => {
@@ -239,15 +234,31 @@ function initScrollAnimations() {
   });
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Add a slight delay for staggered appearance
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, 100);
-        observer.unobserve(entry.target);
+    const activeEntries = entries.filter(e => e.isIntersecting);
+    activeEntries.forEach((entry) => {
+      const element = entry.target;
+      const index = animatedElements.indexOf(element);
+      
+      let delay = 0;
+      if (index !== -1) {
+        if (element.classList.contains('erp-screen')) {
+          // Fire right after the last erp-btn (4 buttons * 85ms = ~340ms)
+          delay = 340;
+        } else if (element.classList.contains('erp-btn')) {
+          // Stagger the 4 buttons sequentially
+          const btnIndex = Array.from(document.querySelectorAll('.erp-btn')).indexOf(element);
+          delay = btnIndex * 85;
+        } else {
+          delay = (index % 4) * 85;
+        }
       }
+      
+      setTimeout(() => {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      }, delay);
+      
+      observer.unobserve(element);
     });
   }, {
     threshold: 0.15,
