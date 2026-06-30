@@ -502,6 +502,10 @@ body .theme-toggle .moon-icon {
   width: 100%;
 }
 
+.hero-grid > * {
+  min-width: 0;
+}
+
 .badge-row {
   display: flex;
   flex-wrap: wrap;
@@ -650,6 +654,8 @@ body .theme-toggle .moon-icon {
 
 .visual-card {
   background-color: var(--bg-card);
+  width: 100%;
+  max-width: 100%;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-subtle);
@@ -1623,7 +1629,6 @@ html.dark .erp-screen {
   .hero-title {
     font-size: 1.85rem;
     line-height: 1.2;
-    word-break: keep-all;
     overflow-wrap: break-word;
   }
   
