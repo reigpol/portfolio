@@ -135,7 +135,7 @@ const ERP_MODULE_DATA = {
             production.delay_owner = 'supplier'
             if production.product_qty > 1000:
                 production.delay_reason = 'next_sprint'`,
-    footerLeft: 'ERP Versions: v16 - v19',
+    footerLeft: 'Odoo Manufacturing: Custom BOM Costing',
     footerRight: 'mrp_custom_valuation'
   },
   inventory: {
@@ -149,10 +149,10 @@ const ERP_MODULE_DATA = {
         for move in self:
             move.quantity_gap = move.product_uom_qty - move.quantity
             move.audit_status = 'matches_excel'
-            if move.quantity_gap:
+            if move.quantity_gap > 0:
                 move.audit_status = 'ask_warehouse'`,
-    footerLeft: 'Odoo Logistics: Advanced Routing',
-    footerRight: 'stock_quantum_router'
+    footerLeft: 'Odoo Logistics: Advanced Stock Routes',
+    footerRight: 'stock_smart_router'
   },
   billing: {
     title: 'l10n_es_facturae_audit.py',
@@ -166,7 +166,7 @@ const ERP_MODULE_DATA = {
         if response.status_code == 418:
             self.aeat_status = 'it_is_complicated'
             self.message_post(body=_('AEAT returned a teapot.'))`,
-    footerLeft: 'ES Localization compliance',
+    footerLeft: 'Spanish Localization: Compliance Integration',
     footerRight: 'l10n_es_facturae'
   },
   integrations: {
@@ -178,11 +178,11 @@ const ERP_MODULE_DATA = {
     @api.model
     def _sync_legacy_order(self, payload):
         try:
-            return self._call_vendor(payload)
+            return self._call_vendor_endpoint(payload)
         except TimeoutError:
-            _logger.info('Vendor API works on their machine')
+            _logger.info('Vendor API works on their local machine')
             return {'status': 'retry'}`,
-    footerLeft: 'External EDI Integrations',
+    footerLeft: 'Integrations: REST API / B2BRouter Gateway',
     footerRight: 'fastapi_xmlrpc_bridge'
   }
 };

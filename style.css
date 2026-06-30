@@ -7,9 +7,9 @@
   --bg-card: #FFFFFF;          /* Pure White for crisp separation */
   --text-primary: #1E1B18;     /* Rich Obsidian / Stone */
   --text-secondary: #5C5854;   /* Balanced Muted Charcoal */
-  --accent-purple: #714B67;    /* Sophisticated Odoo Aubergine */
-  --accent-purple-hover: #5A3952;
-  --accent-purple-light: #F7F2F6;
+  --accent-purple: #BC4B1F;    /* Premium Terracotta Orange */
+  --accent-purple-hover: #A03E18;
+  --accent-purple-light: rgba(188, 75, 31, 0.07);
   --accent-copper: #C27A3D;    /* Industrial Warm Copper */
   --accent-copper-light: #FAF5F0;
   
@@ -35,10 +35,9 @@ html.dark {
   --bg-secondary: #171512;     /* Warm Basalt Clay Gray */
   --bg-card: #201C19;          /* Charred Terracotta & Timber Card */
   --text-primary: #FAF6F0;     /* Cream Alabaster */
-  --text-secondary: #B6AD9D;   /* Soft Warm Sand Grey */
-  --accent-purple: #DCA7C8;    /* Luminous Rose Orchid (Aubergine hybrid) */
-  --accent-purple-hover: #EABFD8;
-  --accent-purple-light: #2A1924; /* Velvet Plum Shadow */
+  --accent-purple: #E86A3C;    /* Vibrant Amber Orange for dark mode */
+  --accent-purple-hover: #FFA27A;
+  --accent-purple-light: rgba(232, 106, 60, 0.15);
   --accent-copper: #E99D4D;    /* Molten Architectural Amber / Gold */
   --accent-copper-light: #321D0E; /* Charred Amber Shadow */
   
@@ -649,10 +648,10 @@ body .theme-toggle .moon-icon {
 }
 
 .visual-card {
-  background-color: #181824;
+  background-color: var(--bg-card);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-subtle);
   overflow: hidden;
   position: relative;
   z-index: 2;
@@ -665,12 +664,12 @@ html.dark .visual-card {
 }
 
 .card-header {
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: var(--bg-secondary);
   padding: 0.75rem 1.25rem;
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .card-dot {
@@ -685,7 +684,7 @@ html.dark .visual-card {
 .card-dot.green { background-color: #10B981; }
 
 .card-title {
-  color: #64748B;
+  color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   margin-left: 0.5rem;
@@ -705,30 +704,44 @@ html.dark .visual-card {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   line-height: 1.5;
-  color: #E2E8F0;
+  color: var(--text-primary);
 }
 #typingCursor, #sandboxCursor {
   animation: blink 1s step-end infinite;
-  color: #E2E8F0;
+  color: var(--text-primary);
 }
 
-/* Code Highlighting classes */
-.keyword { color: #F43F5E; }
-.class-name { color: #38BDF8; }
-.function-name { color: #FBBF24; }
-.string { color: #34D399; }
-.decorator { color: #A78BFA; }
-.number { color: #D97706; }
+/* Code Highlighting classes (Light Theme High Contrast) */
+.keyword { color: #BC4B1F; font-weight: 600; }
+.class-name { color: #7B5282; font-weight: 500; }
+.function-name { color: #4B6B94; }
+.string { color: #528E8C; }
+.decorator { color: #6D7F60; }
+.number { color: #C0793E; }
+
+/* Dark Mode Overrides for Code Highlights */
+html.dark .card-body code {
+  color: #FAF6F0;
+}
+html.dark #typingCursor, html.dark #sandboxCursor {
+  color: #FAF6F0;
+}
+html.dark .keyword { color: #FFA27A; }
+html.dark .class-name { color: #DCA7C8; }
+html.dark .function-name { color: #84B1E7; }
+html.dark .string { color: #72CAC8; }
+html.dark .decorator { color: #9FD087; }
+html.dark .number { color: #FFA85A; }
 
 .card-footer {
-  background-color: rgba(255, 255, 255, 0.01);
+  background-color: var(--bg-secondary);
   padding: 0.75rem 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: #475569;
+  color: var(--text-secondary);
 }
 
 .visual-decoration-glow {
@@ -952,11 +965,11 @@ html.dark .erp-btn.active::after {
 
 /* Mock Screen & Flow */
 .erp-screen {
-  background-color: #181824;
+  background-color: var(--bg-card);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
   overflow: hidden;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-subtle);
   display: flex;
   flex-direction: column;
   min-height: auto;
