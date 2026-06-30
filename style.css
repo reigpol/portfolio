@@ -1615,16 +1615,21 @@ html.dark .erp-screen {
   
   /* Section padding improvements */
   .hero-section {
-    padding-top: 6.5rem;
-    padding-bottom: 3rem;
+    padding-top: 5.5rem;
+    padding-bottom: 2.5rem;
+    min-height: auto;
   }
   
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 1.85rem;
+    line-height: 1.2;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
   
   .section-title {
