@@ -694,13 +694,12 @@ html.dark .visual-card {
   padding: 1.5rem;
   overflow-x: auto;
   min-height: 300px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .card-body pre {
   margin: 0;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  word-break: break-word;
+  white-space: pre;
 }
 
 .card-body code {
