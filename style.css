@@ -698,6 +698,9 @@ html.dark .visual-card {
 
 .card-body pre {
   margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .card-body code {
