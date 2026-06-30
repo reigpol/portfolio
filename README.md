@@ -1,4 +1,4 @@
-# Portfolio — Pol Reig Plazas (Gemini 3.5 Flash Edition)
+# Portfolio — Pol Reig Plazas
 
 Personal portfolio of an Odoo Tech Lead & Software Engineer. Built with vanilla HTML, CSS, and JavaScript, featuring a custom technical-editorial aesthetic and interactive core components.
 
