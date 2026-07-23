@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pol Reig Plazas — Odoo Tech Lead & Software Engineer</title>
+  <meta name="description" content="Portfolio of Pol Reig Plazas, Odoo Tech Lead and Software Engineer. Certified expert in Odoo v16 & v19, specializing in enterprise migrations, EDI integrations, and custom module architecture.">
+  <meta name="author" content="Pol Reig Plazas">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.className=localStorage.getItem('theme')==='dark'||(localStorage.getItem('theme')===null&&window.matchMedia('(prefers-color-scheme:dark)').matches)?'dark':''</script>
+</head>
+<body>
+  
+  <!-- Subtle Grain and Noise Overlay -->
+  <div class="noise-bg"></div>
+
+  <!-- Header & Navigation -->
+  <header class="main-header">
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="header-container">
+      <a href="#" class="logo">
+        <span class="logo-dot"></span>
+        <span class="logo-text desktop-logo">Pol Reig</span>
+        <span class="logo-text mobile-logo">PR</span>
+      </a>
+      
+      <nav class="desktop-nav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#interactive-erp" class="nav-link">ERP Sandbox</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contributions" class="nav-link">Open Source</a>
+        <a href="#contact" class="btn btn-outline nav-btn">Get in touch</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle dark mode">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle Menu" id="mobileMenuBtn">
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer Overlay Backdrop -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuCloseBtn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <nav class="mobile-nav">
+      <a href="#about" class="mobile-nav-link">About</a>
+      <a href="#experience" class="mobile-nav-link">Experience</a>
+      <a href="#interactive-erp" class="mobile-nav-link">ERP Sandbox</a>
+      <a href="#skills" class="mobile-nav-link">Skills</a>
+      <a href="#contributions" class="mobile-nav-link">Open Source</a>
+      <a href="#contact" class="btn btn-primary mobile-nav-btn">Get in Touch</a>
+    </nav>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-text-content reveal-on-load">
+          <div class="badge-row">
+            <span class="badge certified"><span class="badge-dot"></span> Odoo v19 & v16 Functional Certified</span>
+          </div>
+          <h1 class="hero-title">
+            Architecting robust <span class="highlight-text">Odoo Solutions</span> with engineering precision.
+          </h1>
+          <p class="hero-subtitle">
+            Hi, I'm <strong>Pol Reig Plazas</strong>. An Odoo Tech Lead & Software Engineer based in Barcelona, Spain. I specialize in complex ERP upgrades, data migrations, localized accounting compliance, and high-performance custom modules.
+          </p>
+          <div class="hero-actions">
+            <a href="#experience" class="btn-secondary">Explore Work</a>
+            <a href="https://github.com/reigpol" target="_blank" rel="noopener" class="social-icon-link social-icon-link--labeled" aria-label="GitHub personal @reigpol" title="GitHub personal · @reigpol">
+              <svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              <span class="social-handle font-mono">@reigpol</span>
+            </a>
+            <a href="https://github.com/polqubiq" target="_blank" rel="noopener" class="social-icon-link social-icon-link--labeled" aria-label="GitHub work @polqubiq" title="GitHub work · @polqubiq">
+              <svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              <span class="social-handle font-mono">@polqubiq</span>
+            </a>
+            <a href="https://linkedin.com/in/pol-reig-plazas-30020a20a" target="_blank" rel="noopener" class="social-icon-link" aria-label="LinkedIn" title="LinkedIn">
+              <svg class="icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Abstract Decorative Card (Engineering Vibe) -->
+        <div class="hero-visual reveal-on-load delay-1">
+          <div class="visual-card">
+            <div class="card-header">
+              <span class="card-dot red"></span>
+              <span class="card-dot yellow"></span>
+              <span class="card-dot green"></span>
+              <span class="card-title">odoo_architecture.py</span>
+            </div>
+            <div class="card-body">
+              <pre><code id="typingCode"></code><span id="typingCursor"></span></pre>
+            </div>
+            <div class="card-footer">
+              <span class="footer-stat">ERP Versions: v8 – v19</span>
+              <span class="footer-stat">UAB B.Sc. Comp Eng</span>
+            </div>
+          </div>
+          <div class="visual-decoration-glow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-bar">
+      <div class="stat-item reveal-on-load delay-2">
+        <span class="stat-number">5+</span>
+        <span class="stat-label">Years ERP Experience</span>
+      </div>
+      <div class="divider reveal-on-load delay-2"></div>
+      <div class="stat-item reveal-on-load delay-3">
+        <span class="stat-number">10+</span>
+        <span class="stat-label">Odoo Major Releases (v8-v19)</span>
+      </div>
+      <div class="divider reveal-on-load delay-3"></div>
+      <div class="stat-item reveal-on-load delay-4">
+        <span class="stat-number">OCA</span>
+        <span class="stat-label">l10n-spain Contributor</span>
+      </div>
+    </section>
+
+    <!-- Interactive ERP Visualizer -->
+    <section class="interactive-section" id="interactive-erp">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <span class="section-tag font-mono">Interactive Demonstration</span>
+          <h2 class="section-title">The Odoo ERP Core Sandbox</h2>
+          <p class="section-subtitle max-w-2xl mx-auto">
+            Interact with Pol's architectural patterns. Select a modules focus area to inspect live custom Python logic built for Odoo ERP and see how data hooks interact with external systems.
+          </p>
+        </div>
+
+        <div class="erp-sandbox-wrapper">
+          <!-- Controller / Selector Side -->
+          <div class="erp-controls">
+            <button class="erp-btn active" data-module="manufacturing">
+              <div class="erp-btn-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </div>
+              <div class="erp-btn-text">
+                <span class="erp-btn-title">Manufacturing (MRPs)</span>
+                <span class="erp-btn-desc">BOM costing valuation and custom worklines</span>
+              </div>
+            </button>
+
+            <button class="erp-btn" data-module="inventory">
+              <div class="erp-btn-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              </div>
+              <div class="erp-btn-text">
+                <span class="erp-btn-title">Smart Stock Routes</span>
+                <span class="erp-btn-desc">Advanced routing, supplier pricing workflows</span>
+              </div>
+            </button>
+
+            <button class="erp-btn" data-module="billing">
+              <div class="erp-btn-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+              </div>
+              <div class="erp-btn-text">
+                <span class="erp-btn-title">Spanish compliance</span>
+                <span class="erp-btn-desc">Facturae, SII, AEAT reports integration</span>
+              </div>
+            </button>
+
+            <button class="erp-btn" data-module="integrations">
+              <div class="erp-btn-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="erp-btn-text">
+                <span class="erp-btn-title">EDI & API Gateways</span>
+                <span class="erp-btn-desc">FastAPI layers, B2BRouter and XML-RPC</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- Interactive Visualization Screen -->
+          <div class="erp-screen visual-card">
+            <div class="card-header">
+              <span class="card-dot red"></span>
+              <span class="card-dot yellow"></span>
+              <span class="card-dot green"></span>
+              <span class="card-title" id="screenTitle">custom_mrp_costing.py</span>
+            </div>
+            <div class="card-body">
+              <pre><code id="codeSnippet"></code><span id="sandboxCursor"></span></pre>
+            </div>
+            <div class="card-footer" id="sandboxFooter">
+              <span class="footer-stat" id="sandboxFooterLeft">Odoo ERP System: Core Engine</span>
+              <span class="footer-stat" id="sandboxFooterRight">python3.11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section class="experience-section" id="experience">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag font-mono">Career Timeline</span>
+          <h2 class="section-title">Professional Experience</h2>
+        </div>
+
+        <div class="experience-timeline">
+          <!-- QUBIQ Role -->
+          <div class="timeline-item">
+            <div class="timeline-date font-mono">
+              <span>2021 — PRESENT</span>
+              <span class="timeline-location">Barcelona, Spain</span>
+            </div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="experience-header">
+                <h3 class="role-title">Software Engineer & Odoo Tech Lead</h3>
+                <h4 class="company-name">QUBIQ</h4>
+              </div>
+              <p class="experience-summary">
+                I lead dozens of Odoo implementations (v8–v19) and coordinate the technical development team, delivering highly reliable ERP solutions in manufacturing, warehouse management, and complex financial operations.
+              </p>
+              
+              <ul class="experience-highlights">
+                <li>
+                  <strong class="highlight-keyword">Technical Leadership:</strong> Managed end-to-end ERP cycles for high-volume clients, acting as the primary architectural authority for complex technical designs.
+                </li>
+                <li>
+                  <strong class="highlight-keyword">Legacy Migrations:</strong> Engineered custom ETL scripts and validation patterns to securely migrate legacy data (such as v8 architectures) into state-of-the-art v17 & v18 setups, safeguarding data integrity.
+                </li>
+                <li>
+                  <strong class="highlight-keyword">Core Module Architecture:</strong> Developed highly complex modules utilizing Python, XML, and JS to streamline complex BOMs, cost structures, and advanced warehouses.
+                </li>
+                <li>
+                  <strong class="highlight-keyword">API & EDI Pipelines:</strong> Spearheaded critical REST/XML-RPC connectors and custom FastAPI layers, automating invoicing synchronized with B2BRouter networks.
+                </li>
+                <li>
+                  <strong class="highlight-keyword">Spanish Localization:</strong> Maintained compliance configurations for SII, AEAT, and Facturae schemas, securing accurate and automated reporting systems.
+                </li>
+                <li>
+                  <strong class="highlight-keyword">Development Standards:</strong> Enforced strong QA structures, reviewing pull requests, optimizing SQL queries, and defining style guidelines to ensure Odoo code scalability.
+                </li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tag">Python</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Odoo ORM</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Docker</span>
+                <span class="tag">XML-RPC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Open Source Contributions -->
+    <section class="contributions-section" id="contributions">
+      <div class="section-container">
+        <div class="contributions-grid-layout">
+          <div class="contributions-text">
+            <span class="section-tag font-mono">Community & Open Source</span>
+            <h2 class="section-title">Active OCA Contributor</h2>
+            <p class="section-subtitle">
+              Believing in the power of shared, reliable standard code, I actively contribute to the <strong>Odoo Community Association (OCA)</strong>, focusing on the Spanish localization repository (<span class="font-mono">OCA/l10n-spain</span>).
+            </p>
+            <div class="oca-badge-box">
+              <span class="oca-badge">l10n_es_facturae</span>
+              <span class="oca-badge">Electronic Invoicing Expert</span>
+            </div>
+          </div>
+
+          <div class="contributions-cards">
+            <div class="contribution-card">
+              <div class="contrib-card-header">
+                <span class="github-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </span>
+                <h3 class="contrib-title font-mono">l10n_es_facturae improvements</h3>
+              </div>
+              <p class="contrib-desc">
+                Contributed optimizations to the Facturae export structure, fixing strict schema issues and resolving regulatory gaps for automated billing compliance.
+              </p>
+            </div>
+
+            <div class="contribution-card">
+              <div class="contrib-card-header">
+                <span class="github-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </span>
+                <h3 class="contrib-title font-mono">Localization Auditing</h3>
+              </div>
+              <p class="contrib-desc">
+                Investigated, documented, and fixed accounting & tax reporting issues within the OCA localization framework, ensuring robust compliance across Spanish updates.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="skills-section" id="skills">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <span class="section-tag font-mono">Expertise Matrix</span>
+          <h2 class="section-title">Technical Capabilities</h2>
+          <p class="section-subtitle max-w-lg mx-auto">
+            Combining software engineering principles with extensive ERP domain expertise.
+          </p>
+        </div>
+
+        <div class="skills-filter-wrapper text-center">
+          <input type="text" id="skillsSearchInput" class="skills-search-input font-mono" placeholder="Filter skills (e.g. Python, Docker, API, Odoo)..." aria-label="Filter skills">
+        </div>
+
+        <div class="skills-grid">
+          <!-- Skill Category -->
+          <div class="skill-category-card">
+            <h3 class="skill-cat-title">
+              <span class="cat-icon">⚙️</span>
+              Odoo Ecosystem
+            </h3>
+            <ul class="skill-list">
+              <li>Odoo Versions v8 to v19</li>
+              <li>Custom Module Architecture</li>
+              <li>ERP Database Migrations</li>
+              <li>Odoo ORM & QWeb Engine</li>
+              <li>ACL Security & Performance</li>
+            </ul>
+          </div>
+
+          <!-- Skill Category -->
+          <div class="skill-category-card">
+            <h3 class="skill-cat-title">
+              <span class="cat-icon">💻</span>
+              Core Technologies
+            </h3>
+            <ul class="skill-list">
+              <li>Python (Expert)</li>
+              <li>JavaScript (ES6+)</li>
+              <li>XML / XPath Templates</li>
+              <li>SQL & PostgreSQL Tuning</li>
+            </ul>
+          </div>
+
+          <!-- Skill Category -->
+          <div class="skill-category-card">
+            <h3 class="skill-cat-title">
+              <span class="cat-icon">🔌</span>
+              Integrations & EDI
+            </h3>
+            <ul class="skill-list">
+              <li>FastAPI Microservices</li>
+              <li>XML-RPC & REST APIs</li>
+              <li>B2BRouter & EDI Integrations</li>
+              <li>SII & AEAT Digital Tax</li>
+            </ul>
+          </div>
+
+          <!-- Skill Category -->
+          <div class="skill-category-card">
+            <h3 class="skill-cat-title">
+              <span class="cat-icon">🛠️</span>
+              Infrastructure & Tools
+            </h3>
+            <ul class="skill-list">
+              <li>Docker Containerization</li>
+              <li>Git / Version Control Standard</li>
+              <li>Linux Server Administration</li>
+              <li>CI/CD Workflows</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section class="education-section">
+      <div class="section-container">
+        <div class="edu-cert-split">
+          
+          <!-- Education Column -->
+          <div class="edu-column">
+            <div class="column-header">
+              <span class="column-icon">🎓</span>
+              <h2 class="column-title">Education</h2>
+            </div>
+            
+            <div class="edu-card">
+              <span class="edu-date font-mono">2016 — 2022</span>
+              <h3 class="edu-degree">Bachelor's Degree in Computer Engineering</h3>
+              <h4 class="edu-institution">Universitat Autònoma de Barcelona</h4>
+              <p class="edu-location">Barcelona, Spain</p>
+            </div>
+          </div>
+
+          <!-- Certifications Column -->
+          <div class="cert-column">
+            <div class="column-header">
+              <span class="column-icon">🏆</span>
+              <h2 class="column-title">Certifications</h2>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-badge-icon">19</div>
+              <div class="cert-details">
+                <h3 class="cert-name">Odoo v19 Functional Certification</h3>
+                <span class="cert-issuer">Issued by Odoo S.A.</span>
+              </div>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-badge-icon">16</div>
+              <div class="cert-details">
+                <h3 class="cert-name">Odoo v16 Functional Certification</h3>
+                <span class="cert-issuer">Issued by Odoo S.A.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="section-container">
+        <div class="contact-card-box">
+          <div class="contact-inner">
+            <span class="section-tag font-mono">Connection</span>
+            <h2 class="contact-title">Let's build reliable software together.</h2>
+            <p class="contact-subtitle">
+              Whether you are looking to deploy an Odoo instance, optimize custom inventory pathways, migrate your core data securely, or build solid integrations, I'd love to connect.
+            </p>
+            
+            <div class="contact-methods">
+              <a href="mailto:polreigdev@gmail.com" class="contact-item">
+                <span class="contact-icon-wrapper">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </span>
+                <span class="contact-text">polreigdev@gmail.com</span>
+              </a>
+            </div>
+
+            <div class="social-links-footer">
+              <a href="https://github.com/reigpol" target="_blank" rel="noopener" class="social-btn">
+                <span>GitHub personal</span>
+                <span class="social-btn-handle font-mono">@reigpol</span>
+                <span class="arrow-up">↗</span>
+              </a>
+              <a href="https://github.com/polqubiq" target="_blank" rel="noopener" class="social-btn">
+                <span>GitHub work</span>
+                <span class="social-btn-handle font-mono">@polqubiq</span>
+                <span class="arrow-up">↗</span>
+              </a>
+              <a href="https://linkedin.com/in/pol-reig-plazas-30020a20a" target="_blank" rel="noopener" class="social-btn">
+                <span>LinkedIn</span>
+                <span class="arrow-up">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container font-mono">
+      <p>&copy; 2026 Pol Reig Plazas &mdash; Certified Odoo Specialist (v16/v19)</p>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="app.js"></script>
+</body>
+</html>
